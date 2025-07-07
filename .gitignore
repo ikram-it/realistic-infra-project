@@ -1,0 +1,17 @@
+# Python
+*.pyc
+__pycache__/
+.venv/
+venv/
+
+# Docker
+.dockerignore
+*.log
+tmp/
+
+# IDE
+.vscode/
+.idea/
+
+# Secrets (if you ever add any)
+.env
