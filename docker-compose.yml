@@ -4,33 +4,33 @@ version: '3.8'
 services:
   # Our simple Flask web application
   web_app:
-    build: ./app # Build Docker image from the 'app' directory
+    build: ./app  # Build Docker image from the 'app' directory
     container_name: flask_app
     restart: always
     environment:
       # Environment variables for the Flask app to connect to the DB
       DATABASE_URL: postgresql://user:password@db:5432/mydatabase
     depends_on:
-      - db # Ensure database starts before the app
+      - db  # Ensure database starts before the app
     networks:
       - app_network
 
   # Nginx reverse proxy / web server
   nginx:
-    image: nginx:latest # Use the official Nginx image
+    image: nginx:latest  # Use the official Nginx image
     container_name: nginx_proxy
     ports:
-      - "80:80" # Map host port 80 to container port 80
+      - "80:80"  # Map host port 80 to container port 80
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro # Mount Nginx config
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro  # Mount Nginx config
     depends_on:
-      - web_app # Nginx depends on the web_app being available
+      - web_app  # Nginx depends on the web_app being available
     networks:
       - app_network
 
   # PostgreSQL database server
   db:
-    image: postgres:13 # Use a specific version of PostgreSQL
+    image: postgres:13  # Use a specific version of PostgreSQL
     container_name: postgres_db
     restart: always
     environment:
@@ -38,15 +38,13 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     volumes:
-      - db_data:/var/lib/postgresql/data # Persistent data volume
+      - db_data:/var/lib/postgresql/data  # Persistent data volume
     networks:
       - app_network
 
 volumes:
-  db_data: # Define the named volume for database persistence
+  db_data:  # Define the named volume for database persistence
 
 networks:
-  app_network: # Define a custom network for inter-service communication
+  app_network:  # Define a custom network for inter-service communication
     driver: bridge
-
-
