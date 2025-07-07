@@ -5,8 +5,10 @@ import psycopg2
 app = Flask(__name__)
 
 # Get database connection string from environment variable
-DATABASE_URL = os.environ.get('DATABASE_URL', 
-                              'postgresql://user:password@localhost:5432/mydatabase')
+DATABASE_URL = os.environ.get(
+    'DATABASE_URL', 
+    'postgresql://user:password@localhost:5432/mydatabase'
+    )
 
 
 def get_db_connection():
