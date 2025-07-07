@@ -44,7 +44,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # - name: Log in to Docker Hub (optional, if pushing to registry) # This is commented out.
+      # - name: Log in to Docker Hub
       #   uses: docker/login-action@v3
       #   with:
       #     username: ${{ secrets.DOCKER_USERNAME }}
