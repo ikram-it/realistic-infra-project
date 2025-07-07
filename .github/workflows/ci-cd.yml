@@ -56,14 +56,14 @@ jobs:
               # Tag the image with your Docker Hub username/repo:tag
               # Replace 'your-dockerhub-username' with your actual Docker Hub username
               # Replace 'realistic-infra-app' with your desired image name on Docker Hub
-              docker tag flask_app your-dockerhub-username/realistic-infra-app:latest
+              docker tag realistic-infra-project-web_app:latest muhiuddin/realistic-infra-app:latest
               # Or, for versioning, use a commit SHA or a semantic version:
               # docker tag flask_app your-dockerhub-username/realistic-infra-app:${{ github.sha }}
 
           - name: Push Docker image to Docker Hub
             run: |
               # Push the tagged image
-              docker push your-dockerhub-username/realistic-infra-app:latest
+              docker push muhiuddin/realistic-infra-app:latest
               # If you used commit SHA for tagging:
               # docker push your-dockerhub-username/realistic-infra-app:${{ github.sha }}
 
