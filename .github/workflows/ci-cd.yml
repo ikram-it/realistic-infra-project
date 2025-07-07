@@ -12,25 +12,25 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository # This step has 'uses'
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python # This step has 'uses'
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      - name: Install Python dependencies for linting # This step has 'run'
+      - name: Install Python dependencies for linting
         run: |
           python -m pip install --upgrade pip
           pip install flake8 yamllint
 
-      - name: Lint Python files # This step has 'run'
+      - name: Lint Python files
         run: |
-          flake8 app/app.py app/requirements.txt # Adjust paths if needed
-        continue-on-error: true # This is a property of the 'step'
+          flake8 app/app.py app/requirements.txt
+        continue-on-error: true
 
-      - name: Lint YAML files # This step has 'run'
+      - name: Lint YAML files
         run: |
           yamllint docker-compose.yml nginx/nginx.conf .github/workflows/ci-cd.yml
         continue-on-error: true
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: lint
     steps:
-      - name: Checkout repository # This step has 'uses'
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       # - name: Log in to Docker Hub (optional, if pushing to registry) # This is commented out.
@@ -48,9 +48,9 @@ jobs:
       #     username: ${{ secrets.DOCKER_USERNAME }}
       #     password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build Docker Compose services # This step has 'run'
+      - name: Build Docker Compose services
         run: docker compose build --no-push
 
-      - name: Verify built images (optional) # This step has 'run'
+      - name: Verify built images (optional)
         run: |
           docker images
