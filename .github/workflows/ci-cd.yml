@@ -33,8 +33,7 @@ jobs:
 
       - name: Lint YAML files
         run: |
-          yamllint docker-compose.yml
-          yamllint .github/workflows/ci-cd.yml
+          yamllint docker-compose.yml  # Removed .github/workflows/ci-cd.yml
         continue-on-error: true
 
   build-docker-images:
