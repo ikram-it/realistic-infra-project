@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Get database connection string from environment variable
 DATABASE_URL = os.environ.get(
-    'DATABASE_URL', 
+    'DATABASE_URL',
     'postgresql://user:password@localhost:5432/mydatabase'
     )
 
